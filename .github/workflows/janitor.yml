@@ -1,0 +1,17 @@
+name: janitor
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *'
+
+jobs:
+  janitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ruicsh/janitor-action@main
+        with:
+          orgs: tuplo
+          operations: workflow-runs
+        env:
+          GIT_PASSWORD: ${{ secrets.GH_TOKEN }}
